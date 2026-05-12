@@ -1,0 +1,44 @@
+<div class="search-container">
+  <div class="search-wrapper">
+    <input
+      type="text"
+      placeholder="Search by name or role..."
+      (input)="updateSearch($event)"
+      class="search-input"
+    >
+  </div>
+</div>
+
+<div class="profile-grid">
+
+  @if (userService.loading()) {
+    <div class="status-message">Loading data...</div>
+  }
+
+  @if (userService.error()) {
+    <div class="error-message">{{ userService.error() }}</div>
+  }
+
+  @for (user of userService.filteredUsers(); track user.id) {
+    <div class="user-card">
+      <div class="avatar-wrapper">
+        <img [src]="user.avatar" [alt]="user.name" class="avatar">
+      </div>
+      <h3>{{ user.name }}</h3>
+      <p class="role">{{ user.role }}</p>
+      <p class="bio">{{ user.bio }}</p>
+      <div class="skills">
+        @for (skill of user.skills; track skill) {
+          <span>{{ skill }}</span>
+        }
+      </div>
+    </div>
+  } @empty {
+    @if (!userService.loading()) {
+      <div class="no-results">
+        <p>No results found!</p>
+      </div>
+    }
+  }
+
+</div>
