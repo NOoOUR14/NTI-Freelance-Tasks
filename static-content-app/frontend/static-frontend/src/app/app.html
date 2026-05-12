@@ -1,0 +1,41 @@
+<div class="main-container">
+  @if (loading()) {
+    <div class="loader-container">
+      <div class="spinner"></div>
+      <p>Loading Workspace...</p>
+    </div>
+  } @else if (contentData()) {
+    <div class="glass-card">
+      <header>
+        <span class="company-tag">{{ contentData().companyName }}</span>
+        <h1 class="main-title">{{ contentData().title }}</h1>
+      </header>
+
+      <div class="image-container">
+        <img [src]="contentData().imageUrl" alt="Business Solutions">
+      </div>
+
+      <p class="description">
+        {{ contentData().description }}
+      </p>
+
+      <div class="features-list">
+        @for (feature of contentData().features; track feature) {
+          <div class="feature-card">
+            <span class="status-dot"></span>
+            <span class="feature-text">{{ feature }}</span>
+          </div>
+        }
+      </div>
+
+      <footer>
+        <button class="action-btn">Get Started</button>
+        <p class="copyright">© 2026 {{ contentData().companyName }}. All rights reserved.</p>
+      </footer>
+    </div>
+  } @else {
+    <div class="error-state">
+      <p>Unable to connect to service. Please check your connection.</p>
+    </div>
+  }
+</div>
