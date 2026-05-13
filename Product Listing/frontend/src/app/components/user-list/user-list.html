@@ -1,0 +1,43 @@
+<div class="container">
+  <header class="dashboard-header">
+    <div class="header-info">
+      <h1>Team Directory</h1>
+      @if (!userService.loading()) {
+        <span class="user-count">{{ userService.users().length }} Professionals</span>
+      }
+    </div>
+    <a routerLink="/add" class="btn-primary">+ Add New Talent</a>
+  </header>
+
+  <div class="profiles-grid">
+    @for (user of userService.users(); track user._id) {
+      <div class="user-card">
+        <!-- دائرة الحرف الأول من الاسم -->
+        <div class="avatar-circle">
+          {{ user.name.charAt(0).toUpperCase() }}
+        </div>
+
+        <div class="user-info">
+          <h3>{{ user.name }}</h3>
+          <span class="role-text">{{ user.role }}</span>
+          <p class="bio-text">{{ user.bio }}</p>
+        </div>
+
+        <div class="skills-list">
+          @for (skill of user.skills; track skill) {
+            <span class="skill-tag">{{ skill }}</span>
+          }
+        </div>
+
+        <div class="actions">
+          <a [routerLink]="['/edit', user._id]" class="btn-edit">Edit</a>
+          <button (click)="onDelete(user._id!)" class="btn-delete">Delete</button>
+        </div>
+      </div>
+    } @empty {
+      @if (!userService.loading()) {
+        <div class="no-data">No team members found.</div>
+      }
+    }
+  </div>
+</div>

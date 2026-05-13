@@ -1,0 +1,43 @@
+:host {
+  display: block;
+  background: #0b0925;
+  min-height: 100vh;
+  padding: 40px 20px;
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+.form-container {
+  background: rgba(0, 0, 0, 0.918);
+  padding: 40px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.form-group {
+  margin-bottom: 20px;
+}
+label {
+  display: block; margin-bottom: 8px; color: #94a3b8;
+}
+input, textarea {
+  width: 100%; padding: 12px; border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white; box-sizing: border-box;
+}
+.form-actions {
+  display: flex; gap: 15px; margin-top: 30px;
+}
+.btn-save {
+  background: #38bdf8; color: #0f172a; padding: 10px 20px; border: none;
+  border-radius: 8px; cursor: pointer; font-weight: bold; flex: 1;
+}
+.btn-save:disabled {
+  opacity: 0.5; cursor: not-allowed;
+}
+.btn-cancel {
+  background: transparent; border: 1px solid #38bdf8; color: #38bdf8;
+  padding: 10px 20px; border-radius: 8px; text-decoration: none; text-align: center; flex: 1;
+}
